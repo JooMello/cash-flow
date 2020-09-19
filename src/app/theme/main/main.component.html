@@ -1,0 +1,23 @@
+<div class="flow-main">
+
+  <mat-toolbar color="primary">
+    <mat-list role="list" *ngFor="let item of items">
+      <mat-list-item role="listitem">
+        <mat-icon matTooltip="{{item.toltip}}" matTooltipPosition="above"
+                  routerLink="{{item.link}}">{{item.icon}}</mat-icon>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+    <mat-list>
+      <mat-list-item role="listitem">
+        <mat-icon matTooltip="Sair" matTooltipPosition="above" (click)="logout()">logout</mat-icon>
+      </mat-list-item>
+    </mat-list>
+  </mat-toolbar>
+
+  <div class="flow-component">
+    <router-outlet></router-outlet>
+  </div>
+
+
+</div>

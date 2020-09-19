@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fluxo-caixa-cd3c1": {
+      "hosting": {
+        "fluxo-caixa": [
+          "fluxo-caixa-cd3c1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fluxo-caixa-cd3c1"
+  }
+}

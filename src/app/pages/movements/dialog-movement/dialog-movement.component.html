@@ -1,0 +1,51 @@
+<div *ngIf="!dialogOption" class="mat-dialog-content">
+  <h2 *ngIf="!formEdit">Nova movimentação</h2>
+  <h2 *ngIf="formEdit === 'edit'">Editar movimentação</h2>
+  <form [formGroup]="movementForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Data da Movimentação</mat-label>
+      <input matInput readonly [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker color="primary"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Descrição</mat-label>
+      <input matInput formControlName="description" placeholder="Descrição">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Valor</mat-label>
+      <input matInput formControlName="value" currencyMask
+             [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo do Movimento</mat-label>
+      <mat-select formControlName="type" name="type.value">
+        <mat-option *ngFor="let type of typeMovement" [value]="type.id">
+          {{type.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <div class="buttons-movement">
+    <button mat-raised-button matDialogClose>Cancelar</button>
+    <button *ngIf="!formEdit" mat-raised-button color="primary" (click)="addNewMovement()"
+            [disabled]="movementForm.invalid">Adicionar
+    </button>
+    <button *ngIf="formEdit === 'edit'" mat-raised-button color="primary" (click)="updateMovement()"
+            [disabled]="movementForm.invalid">Salvar
+    </button>
+  </div>
+</div>
+
+<div *ngIf="dialogOption === 'remove'">
+  <h2>Deseja remover?</h2>
+
+  <div class="buttons-movement">
+    <button (click)="closeBottomShet()" mat-raised-button>Cancelar</button>
+    <button mat-raised-button color="primary" (click)="removeMovement()">Excluir</button>
+  </div>
+</div>
